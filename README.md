@@ -28,16 +28,17 @@ query Test {
 
 Testing with a field without a cacheControl directive we get the parent types setting `"cache-control": "max-age=500, public"`
 
+```
 query Test {
   data {
     title
   }
 }
-
+```
 
 ----
 
-Testing with a union field in the query we get ``"cache-control": "no-store"``
+Testing with a union field in the query we get `"cache-control": "no-store"`
 
 *This is unexpected*
 
@@ -63,6 +64,7 @@ query Test2 {
     }
   }
 }
+```
 
 ----
 
@@ -97,4 +99,3 @@ query Test {
   }
 }
 ```
-
