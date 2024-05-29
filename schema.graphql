@@ -1,0 +1,33 @@
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+
+directive @cacheControl(
+  maxAge: Int
+  scope: CacheControlScope
+  inheritMaxAge: Boolean
+) on FIELD_DEFINITION | OBJECT | INTERFACE | UNION
+
+union DocumentType = SubType1 | SubType2
+
+type SubType1 {
+  id: Int
+  isFlagged: Boolean @cacheControl(maxAge: 10, scope: PRIVATE)
+}
+
+type SubType2 {
+  id: Int
+  isFlagged: Boolean @cacheControl(maxAge: 10, scope: PRIVATE)
+}
+
+type Data @cacheControl(maxAge: 500) {
+  id: Int @cacheControl(maxAge: 300)
+  title: String
+  unionField: DocumentType
+  unionFieldCached: DocumentType @cacheControl(maxAge: 400)
+}
+
+type Query {
+  data: [Data]
+}
