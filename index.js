@@ -30,6 +30,8 @@ const resolvers = {
   Data: {
     unionField: resolveUnionField,
     unionFieldCached: resolveUnionField,
+    subField: () => ({__typeName: 'SubType1'}),
+    subFieldCached: () => ({__typeName: 'SubType1'}),
   },
   SubType1: {
     id: () => 1,

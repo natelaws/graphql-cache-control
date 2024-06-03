@@ -8,6 +8,8 @@ This repo provieds a minimal amount of code to test different cache-control resp
 nvm use
 npm i
 npm start
+
+open http://localhost:4001/graphql
 ```
 
 ## Tests

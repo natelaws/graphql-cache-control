@@ -9,7 +9,7 @@ directive @cacheControl(
   inheritMaxAge: Boolean
 ) on FIELD_DEFINITION | OBJECT | INTERFACE | UNION
 
-union DocumentType = SubType1 | SubType2
+union UnionedType @cacheControl(maxAge: 20, scope: PRIVATE) = SubType1 | SubType2
 
 type SubType1 {
   id: Int
@@ -24,8 +24,10 @@ type SubType2 {
 type Data @cacheControl(maxAge: 500) {
   id: Int @cacheControl(maxAge: 300)
   title: String
-  unionField: DocumentType
-  unionFieldCached: DocumentType @cacheControl(maxAge: 400)
+  unionField: UnionedType
+  unionFieldCached: UnionedType @cacheControl(maxAge: 400)
+  subField: SubType1
+  subFieldCached: SubType1 @cacheControl(maxAge: 401)
 }
 
 type Query {
